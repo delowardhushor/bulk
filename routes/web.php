@@ -20,7 +20,7 @@ use Bulkly\SocialAccounts;
 use Bulkly\RssAutoPost;
 use Bulkly\BufferPosting;
 use GuzzleHttp\Exception\ClientException;
-
+// use Symfony\Component\Routing\Route;
 
 Route::get('/user/invoice/{invoice}', function (Request $request, $invoiceId) {
     return $request->user()->downloadInvoice($invoiceId, [
@@ -459,4 +459,8 @@ Route::get('/sendPostTest', 'CronController@sendPostTest');
 
 Route::get('/app/bulk.ly/free/{code}','Auth\RegisterController@validUserRegistrationForm')->name('bulk.free-signup');
 Route::post('/app/bulk.ly/free/signUp/{code}','Auth\RegisterController@validUserRegistration');
+
+
+
+Route::resource('buffer_postings', 'buffer_postingsController');
 

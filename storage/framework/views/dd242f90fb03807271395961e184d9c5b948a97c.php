@@ -35,27 +35,27 @@
 			<div class="collapse navbar-collapse" id="navbar">
 
 				<ul class="nav navbar-nav navbar-right">
-					@if(auth()->guest())
-						@if(!Request::is('auth/login'))
-							<li><a href="{{ url('/login') }}">Login</a></li>
-						@endif
-						@if(!Request::is('auth/register'))
-							<li><a href="{{ url('/register') }}">Register</a></li>
-						@endif
-					@else
+					<?php if(auth()->guest()): ?>
+						<?php if(!Request::is('auth/login')): ?>
+							<li><a href="<?php echo e(url('/login')); ?>">Login</a></li>
+						<?php endif; ?>
+						<?php if(!Request::is('auth/register')): ?>
+							<li><a href="<?php echo e(url('/register')); ?>">Register</a></li>
+						<?php endif; ?>
+					<?php else: ?>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ auth()->user()->name }} <span class="caret"></span></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?php echo e(auth()->user()->name); ?> <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="{{ url('/auth/logout') }}">Logout</a></li>
+								<li><a href="<?php echo e(url('/auth/logout')); ?>">Logout</a></li>
 							</ul>
 						</li>
-					@endif
+					<?php endif; ?>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
-	@yield('content')
+	<?php echo $__env->yieldContent('content'); ?>
 
 
 
